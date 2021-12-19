@@ -45,4 +45,14 @@ public class ProductController {
     public Optional<Product> getProduct(@PathVariable("reference") String reference){
         return productService.getProduct(reference);
     }
+    
+     @GetMapping("/price/{price}")
+    public List<Product> getByPrice(@PathVariable("price") double price){
+        return productService.getByPrice(price);
+    }
+
+    @GetMapping("/description/{description}")
+    public List<Product> getByDescriptionContains(@PathVariable("description") String description){
+        return productService.getByDescriptionContains(description);
+    }
 }
