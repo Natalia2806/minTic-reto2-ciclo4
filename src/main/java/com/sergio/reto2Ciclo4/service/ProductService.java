@@ -36,11 +36,11 @@ public class ProductService {
         if (product.getReference() != null) {
             Optional<Product> dbProduct = productRepository.getProduct(product.getReference());
             if (!dbProduct.isEmpty()) {
-                if (product.getBrand() != null) {
-                    dbProduct.get().setBrand(product.getBrand());
-                }
                 if (product.getCategory() != null) {
                     dbProduct.get().setCategory(product.getCategory());
+                }
+                if(product.getSize() != null){
+                    dbProduct.get().setSize(product.getSize());
                 }
                 if (product.getDescription() != null) {
                     dbProduct.get().setDescription(product.getDescription());
