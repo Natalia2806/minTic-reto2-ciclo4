@@ -3,6 +3,8 @@ package com.sergio.reto2Ciclo4.repository;
 
 import com.sergio.reto2Ciclo4.model.Order;
 import com.sergio.reto2Ciclo4.repository.crudRepository.OrderCrudRepository;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +41,23 @@ public class OrderRepository {
     public List<Order> getOrderByZone(String zone){
         return orderCrudRepository.findBySalesManZone(zone);
     }
+    
+    public List<Order> getOrderBySalesManId(int id){
+        return orderCrudRepository.findBySalesManId(id);
+    }
+
+    public List<Order> getOrderBySalesManIdAndStatus(int id, String status){
+        return orderCrudRepository.findBySalesManIdAndStatus(id, status);
+    }
+    
+    public List<Order> getByRegisterDayAndSalesManId(String registerDay, Integer id){
+        try {
+            return orderCrudRepository.findByRegisterDayAndSalesManId(new SimpleDateFormat("yyyy-MM-dd").parse(registerDay), id);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 
 }
